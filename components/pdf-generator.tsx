@@ -256,6 +256,16 @@ export function PDFGenerator({ data, images }: PDFGeneratorProps) {
       if (images.length > 0) {
         imgY = drawSectionLabel("Diseno Aprobado", rightColX, imgY)
 
+        // Nombre del Diseñador
+        pdf.setFontSize(7)
+        pdf.setFont("helvetica", "normal")
+        pdf.setTextColor(113, 128, 150)
+        pdf.text("DISEÑADOR", rightColX, imgY)
+        pdf.setFontSize(9)
+        pdf.setFont("helvetica", "bold")
+        pdf.setTextColor(26, 54, 93)
+        pdf.text(data.nombreDiseñador || "---", rightColX, imgY + 5)
+
         // Badge "APROBADO"
         const approvedText = "APROBADO"
         pdf.setFontSize(8)
@@ -270,13 +280,13 @@ export function PDFGenerator({ data, images }: PDFGeneratorProps) {
         pdf.setFontSize(7)
         pdf.setFont("helvetica", "normal")
         pdf.setTextColor(113, 128, 150)
-        pdf.text(approvalLabel, rightColX, imgY)
+        pdf.text(approvalLabel, rightColX, imgY + 10)
         pdf.setFontSize(9)
         pdf.setFont("helvetica", "bold")
         pdf.setTextColor(26, 54, 93)
-        pdf.text(formatDate(data.fechaAprobacionDiseno), rightColX, imgY + 5)
+        pdf.text(formatDate(data.fechaAprobacionDiseno), rightColX, imgY + 15)
 
-        imgY += 10
+        imgY += 20
 
         const maxImgHeight = images.length > 1 ? 55 : 110
         for (let i = 0; i < images.length; i++) {
