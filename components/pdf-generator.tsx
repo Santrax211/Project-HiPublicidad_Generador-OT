@@ -256,37 +256,38 @@ export function PDFGenerator({ data, images }: PDFGeneratorProps) {
       if (images.length > 0) {
         imgY = drawSectionLabel("Diseno Aprobado", rightColX, imgY)
 
-        // Nombre del Diseñador
-        pdf.setFontSize(7)
+        // Nombre del Diseñador (lado izquierdo)
+        pdf.setFontSize(6)
         pdf.setFont("helvetica", "normal")
         pdf.setTextColor(113, 128, 150)
         pdf.text("DISEÑADOR", rightColX, imgY)
-        pdf.setFontSize(9)
-        pdf.setFont("helvetica", "bold")
-        pdf.setTextColor(26, 54, 93)
-        pdf.text(data.nombreDiseñador || "---", rightColX, imgY + 5)
-
-        // Badge "APROBADO"
-        const approvedText = "APROBADO"
         pdf.setFontSize(8)
         pdf.setFont("helvetica", "bold")
-        const approvedW = pdf.getTextWidth(approvedText) + 6
-        pdf.setFillColor(56, 161, 105)
-        pdf.roundedRect(rightColX + rightColW - approvedW - 2, imgY - 6.5, approvedW + 2, 6, 2, 2, "F")
-        pdf.setTextColor(255, 255, 255)
-        pdf.text(approvedText, rightColX + rightColW - approvedW + 1, imgY - 2.5)
+        pdf.setTextColor(26, 54, 93)
+        pdf.text(data.nombreDiseñador || "---", rightColX, imgY + 4)
 
-        const approvalLabel = "FECHA APROB."
-        pdf.setFontSize(7)
+        // Fecha de Aprobación (centro)
+        const midCol = rightColX + rightColW * 0.5
+        pdf.setFontSize(6)
         pdf.setFont("helvetica", "normal")
         pdf.setTextColor(113, 128, 150)
-        pdf.text(approvalLabel, rightColX, imgY + 10)
-        pdf.setFontSize(9)
+        pdf.text("FECHA APROB.", midCol, imgY)
+        pdf.setFontSize(8)
         pdf.setFont("helvetica", "bold")
         pdf.setTextColor(26, 54, 93)
-        pdf.text(formatDate(data.fechaAprobacionDiseno), rightColX, imgY + 15)
+        pdf.text(formatDate(data.fechaAprobacionDiseno), midCol, imgY + 4)
 
-        imgY += 20
+        // Badge "APROBADO" (lado derecho)
+        const approvedText = "APROBADO"
+        pdf.setFontSize(7)
+        pdf.setFont("helvetica", "bold")
+        const approvedW = pdf.getTextWidth(approvedText) + 5
+        pdf.setFillColor(56, 161, 105)
+        pdf.roundedRect(rightColX + rightColW - approvedW, imgY - 1, approvedW, 7, 1.5, 1.5, "F")
+        pdf.setTextColor(255, 255, 255)
+        pdf.text(approvedText, rightColX + rightColW - approvedW + 2.5, imgY + 2.5)
+
+        imgY += 12
 
         const maxImgHeight = images.length > 1 ? 55 : 110
         for (let i = 0; i < images.length; i++) {
