@@ -24,6 +24,7 @@ const emptyData: WorkOrderData = {
   medidas: "",
   direccion: "",
   fechaAprobacionDiseno: "",
+  nombreDiseñador: "",
   observaciones: "",
 }
 
@@ -51,6 +52,7 @@ export default function HomePage() {
       medidas: data.medidas || "",
       direccion: data.direccion || "",
       fechaAprobacionDiseno: "",
+      nombreDiseñador: "",
       observaciones: data.observaciones || "",
     })
     setHasExtracted(true)
