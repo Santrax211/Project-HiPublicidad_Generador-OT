@@ -22,6 +22,7 @@ export interface WorkOrderData {
   medidas: string
   direccion: string
   fechaAprobacionDiseno: string
+  nombreDiseñador: string
   observaciones: string
 }
 
@@ -270,6 +271,20 @@ export function WorkOrderForm({ data, onChange }: WorkOrderFormProps) {
             className="bg-card"
           />
         </div>
+      </div>
+
+      {/* Nombre del Diseñador */}
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="nombreDiseñador" className="text-sm font-semibold text-foreground">
+          Diseñador a Cargo
+        </Label>
+        <Input
+          id="nombreDiseñador"
+          value={data.nombreDiseñador}
+          onChange={(e) => updateField("nombreDiseñador", e.target.value)}
+          placeholder="Nombre del diseñador responsable"
+          className="bg-card"
+        />
       </div>
 
       {/* Observaciones */}

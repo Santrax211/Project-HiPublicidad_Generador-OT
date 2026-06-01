@@ -299,6 +299,19 @@ export function PDFGenerator({ data, images }: PDFGeneratorProps) {
       } else {
         // Placeholder
         imgY = drawSectionLabel("Diseno", rightColX, imgY)
+        
+        // Nombre del Diseñador
+        pdf.setFontSize(7)
+        pdf.setFont("helvetica", "normal")
+        pdf.setTextColor(113, 128, 150)
+        pdf.text("DISEÑADOR", rightColX, imgY)
+        pdf.setFontSize(9)
+        pdf.setFont("helvetica", "bold")
+        pdf.setTextColor(26, 54, 93)
+        pdf.text(data.nombreDiseñador || "---", rightColX, imgY + 5)
+        imgY += 10
+        
+        // Fecha de Aprobación
         pdf.setFontSize(7)
         pdf.setFont("helvetica", "normal")
         pdf.setTextColor(113, 128, 150)
@@ -610,6 +623,17 @@ function PDFPreviewContent({
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <div style={{ fontSize: "9px", textTransform: "uppercase", color: "#718096", letterSpacing: "1px", fontWeight: "600" }}>
+                    Diseñador
+                  </div>
+                  <div style={{ fontSize: "10px", fontWeight: "700", color: "#1a365d" }}>
+                    {data.nombreDiseñador || "---"}
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
+                <div></div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <div style={{ fontSize: "9px", textTransform: "uppercase", color: "#718096", letterSpacing: "1px", fontWeight: "600" }}>
                     Fecha Aprob.
                   </div>
                   <div style={{ fontSize: "10px", fontWeight: "700", color: "#1a365d" }}>
@@ -639,6 +663,17 @@ function PDFPreviewContent({
                 <div style={{ fontSize: "9px", textTransform: "uppercase", color: "#718096", letterSpacing: "1.5px", fontWeight: "700", borderBottom: "2px solid #1a365d", paddingBottom: "3px" }}>
                   Diseno
                 </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <div style={{ fontSize: "9px", textTransform: "uppercase", color: "#718096", letterSpacing: "1px", fontWeight: "600" }}>
+                    Diseñador
+                  </div>
+                  <div style={{ fontSize: "10px", fontWeight: "700", color: "#1a365d" }}>
+                    {data.nombreDiseñador || "---"}
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div></div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <div style={{ fontSize: "9px", textTransform: "uppercase", color: "#718096", letterSpacing: "1px", fontWeight: "600" }}>
                     Fecha Aprob.
